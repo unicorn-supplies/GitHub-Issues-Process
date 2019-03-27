@@ -5,15 +5,15 @@ Issues typically flow through the below states during their lifecycle.
 
 ## Issue States
 
-Any issue with a ![](img-labels/trash.png) label is automatically excluded from the below states.
+The following labels represent theWorkflow of an issue
 
 State | Label | Open? | % | Description
 ---|---|---|---|---
-backlog | n/a | Open | 0% | Issues have been identified but are not yet ready for development. Backlogged issues are typically not in a milestone.
+backlog | ![](img-labels/ready.png) | Open | 0% | Issues have been identified but are not yet ready for development. Backlogged issues are typically not in a milestone.
 todo | ![](img-labels/ready.png) | Open  | 20% | Issues have been fleshed out to the point where they are believed to be ready to be acted upon by developers working on the associated milestone.
 in progress | ![](img-labels/in-progress.png) | Open | 30% | Issues are actively being worked on by a developer or another person (if not a coding task).  With the exception of items that are blocked or returned to development due to failed tests, each developer should strive to have as few items in this state as possible.
-Review required | ![](img-labels/in-review.png) | Open | 70% | The developer believes he/she is complete and has submitted the issue for peer review.
-on staging | ![](img-labels/in-review.png) | Open | 75% | The issue got deployed to the staging system
+Review required | ![](img-labels/in-review.png) | Open | 60% | The developer believes he/she is complete and has submitted the issue for peer review.
+on staging | ![](img-labels/in-review.png) | Open | 70% | The issue got deployed to the staging system
 Ready for testing | ![](img-labels/feature-testing.png) | Open | 80% | Issues are code complete and can be acted on by testers.  All code is assumed to be checked in and deployed to the appropriate environments for testing.
 on production | ![](img-labels/in-review.png) | Open | 95% | The issue got deployed to the production system
 Closed | n/a | Closed | 100% | Issues have passed testing and are closed.
