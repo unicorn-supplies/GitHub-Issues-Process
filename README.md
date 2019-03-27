@@ -3,18 +3,6 @@ This document defines the guidelines we follow for task management using GitHub 
 # Issues Management
 Issues typically flow through the below states during their lifecycle.
 
-Most states are controlled via GitHub labels. By default, state transitions are
-managed simply by removing the current state label and applying the appropriate
-next state label. The exception are the Backlog and Done states. State labels do not control these
-states. Rather they are controlled by being Open or Closed, and whether they are
-assigned to a milestone. That rule applies regardless of any labels assigned it.
-
-## Issue Kanban
-
-curl -u $TOKEN:x-oauth-basic --include --request POST --data '{"name":"Devop","color":"04649b"}' "https://api.github.com/repos/$REPO_USER/$REPO_NAME/labels"
-
-
-
 ## Issue States
 
 Any issue with a ![](img-labels/trash.png) label is automatically excluded from the below states.
@@ -68,5 +56,9 @@ Core app | ![](img-labels/prio-1.png) | This is part of the Core app
 
 ## Size / Other dimensions
 
+The following labels are used for Sizes
+
+Name | Label | Description
+---| ---|----
 EPIC | ![](img-labels/test-failed.png) | This issue is too big and we need smaller issues for it
 
