@@ -9,69 +9,64 @@ next state label. The exception are the Backlog and Done states. State labels do
 states. Rather they are controlled by being Open or Closed, and whether they are
 assigned to a milestone. That rule applies regardless of any labels assigned it.
 
+## Issue Kanban
+
+curl -u $TOKEN:x-oauth-basic --include --request POST --data '{"name":"Devop","color":"04649b"}' "https://api.github.com/repos/$REPO_USER/$REPO_NAME/labels"
+
+
+
 ## Issue States
 
 Any issue with a ![](img-labels/trash.png) label is automatically excluded from the below states.
 
 State | Label | Open? | % | Description
 ---|---|---|---|---
-Backlog | n/a | Open | 0% | Issues have been identified but are not yet ready for development. Backlogged issues are typically not in a milestone.
-In Analysis | ![](img-labels/in-analysis.png) | Open | 10% | Issues are actively being analyzed, typically by a Business Analyst or Lead Developer, to ensure the work is Ready for development.
-Ready | ![](img-labels/ready.png) | Open  | 20% | Issues have been fleshed out to the point where they are believed to be ready to be acted upon by developers working on the associated milestone.
-In Progress | ![](img-labels/in-progress.png) | Open | 30% | Issues are actively being worked on by a developer or another person (if not a coding task).  With the exception of items that are blocked or returned to development due to failed tests, each developer should strive to have as few items in this state as possible.
-In Review | ![](img-labels/in-review.png) | Open | 70% | The developer believes he/she is complete and has submitted the issue for peer review.
-Feature Testing | ![](img-labels/feature-testing.png) | Open | 80% | Issues are code complete and can be acted on by testers.  All code is assumed to be checked in and deployed to the appropriate environments for testing.
-Integration Testing | ![](img-labels/integration-testing.png) | Open | 90% | Issues have been unit tested and are ready for closure pending end of sprint integration testing.
-Done | n/a | Closed | 100% | Issues have passed testing and are closed.
+backlog | n/a | Open | 0% | Issues have been identified but are not yet ready for development. Backlogged issues are typically not in a milestone.
+todo | ![](img-labels/ready.png) | Open  | 20% | Issues have been fleshed out to the point where they are believed to be ready to be acted upon by developers working on the associated milestone.
+in progress | ![](img-labels/in-progress.png) | Open | 30% | Issues are actively being worked on by a developer or another person (if not a coding task).  With the exception of items that are blocked or returned to development due to failed tests, each developer should strive to have as few items in this state as possible.
+Review required | ![](img-labels/in-review.png) | Open | 70% | The developer believes he/she is complete and has submitted the issue for peer review.
+on staging | ![](img-labels/in-review.png) | Open | 75% | The issue got deployed to the staging system
+Ready for testing | ![](img-labels/feature-testing.png) | Open | 80% | Issues are code complete and can be acted on by testers.  All code is assumed to be checked in and deployed to the appropriate environments for testing.
+on production | ![](img-labels/in-review.png) | Open | 95% | The issue got deployed to the production system
+Closed | n/a | Closed | 100% | Issues have passed testing and are closed.
 
-## Helper Labels
+## Priorities + Issue helpers
+
 The following labels are not states, per se, but help to communicate information about the issue.
 
-Label | Description
----|----
-![](img-labels/blocked.png) | The person assigned to the issue cannot progress because they are awaiting information or action from someone else
-![](img-labels/bug-dev.png) | The issue is a programmatic error (bug) in the code found during development
-![](img-labels/bug-prod.png) | The issue is a programmatic error (bug) in the code found in production
-![](img-labels/help-wanted.png) | The person assigned is requesting assistance on the task
-![](img-labels/requirement.png) | The issue is a formal/written requirement
-![](img-labels/test-failed.png) | The issue was Feature Tested, but was set to failed by the person testing it
+Name | Label | Description
+---| ---|----
+Bug & Blocker | ![](img-labels/prio-1.png) | This is a blocker on production and needs an urgent fix
+prio-1 | ![](img-labels/bug-dev.png) | prio-1 issue - should come in the next Sprint
+prio-2 | ![](img-labels/bug-prod.png) | prio-2 issue - should come in one of the next Sprints
+prio-3 | ![](img-labels/help-wanted.png) | prio-3 issue - should come in one of the next Sprints
+for later | ![](img-labels/help-wanted.png) | The issue is for later and does not have a high prio at all
+Required for MVP | ![](img-labels/test-failed.png) | This issue is needed for an MVP / next Milestone
 
+## Teams / Who must work on this?
 
-# To Use This Process
+The following labels can be used to organize issues into topics
 
-The only thing that you need to configure to use this process is to add the below labels to your repo.
+Name | Label | Description
+---| ---|----
+Devop | ![](img-labels/test-failed.png) | A devop issue
+Backend | ![](img-labels/test-failed.png) | A backend issue
+Frontend | ![](img-labels/test-failed.png) | A frontend issue
+Product / Conception | ![](img-labels/test-failed.png) | A product / conceptional issue
+Good for juniors | ![](img-labels/test-failed.png) | This issue could be handled by a Junior developer
+Client discussion required | ![](img-labels/test-failed.png) | This issue needs a Q+A with the client
+Developer discussion required | ![](img-labels/test-failed.png) | This issue needs a Q+A with the developer 
 
-This [bash script](/set-github-labels.sh) can be used to:
-* Remove the default GitHub labels automatically add when a repo is created.
-* Add the above process labels.
+## Topics
 
-The script requests a GitHub Personal Access Token which in order to access private repos. You will need to first create a token by following [these instructions](https://help.github.com/articles/creating-an-access-token-for-command-line-use/).
+The following labels can be used to organize issues into topics
 
-To run the script:
-* Download (or git clone the repo).
-* Set execute permissions; `chmod +x /path/set-github-labels.sh`.
-* Drag the file into Terminal.
+Name | Label | Description
+---| ---|----
+bugfixing| ![](img-labels/requirement.png) | This is a bug which was found
+Core app | ![](img-labels/prio-1.png) | This is part of the Core app
 
-# Schedule the project in GitHub
+## Size / Other dimensions
 
-1. Create a Milestone
-  * Name in the format "v[#.##]". Ex: "v0.01"
-  * Select the Due Date
-1. Assign issues to each milestone
-1. Create an overall project schedule using [milepost](http://milepost.io).
-1. When satisfied with the schedule, email to the team and the client.
+EPIC | ![](img-labels/test-failed.png) | This issue is too big and we need smaller issues for it
 
-## Integration Testing
-Items in the integration testing state have passed all unit tests in the development environment and are considered complete pending final end of phase integration testing.  Once all development work for the sprint has been completed, items will be integration tested before being moved to Done.
-
-## Failed Tests
-When a test fails, in addition to moving the item back to **In Development**, the tester should apply the **Test Failed** label and re-assign the issue to the original developer.  This will aid in tracking priorities and help developers identify what needs their immediate attention.
-
-![Issue Management Process](flowcharts/software-development-process.png)
-
-## Release Closure
-Each release has several tasks that need to be carried out to finalize the release.  These tasks are designed to facilitate testing and publication of the completed release, as well as to prepare for the next release.
-
-The first step is to update the test and development databases with the latest data from production.  Following that, we publish the completed release to the test environment and perform integration testing.  Once all of the release items have passed integration testing, we deploy the release and update any pending operational items to indicate which ones can now be worked on.  The following graphic shows the individual steps for this process.
-
-![Sprint Closure Process](flowcharts/sprint-closure.png)
