@@ -1,5 +1,14 @@
 This document defines the guidelines we follow for task management using GitHub Issues.  It is intentionally lean and covers primarily how individual releases are managed.
 
+# How to use the script
+
+1. Go to https://github.com/settings/tokens to get a Personal Access token, you need `repo` and `admin:repo_hook` scope
+2. Clone this repo
+3. `chmod +x /github-issue-labels/set-github-labels.sh`
+4. `./github-issue-labels/set-github-labels.sh`
+
+It will ask for the Personal access token and then the repository where you want to add labels.
+
 # Issues Management
 Issues typically flow through the below states during their lifecycle.
 
