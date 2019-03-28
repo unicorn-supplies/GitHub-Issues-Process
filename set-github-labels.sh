@@ -40,7 +40,7 @@ curl -u $TOKEN:x-oauth-basic --include --request POST --data '{"name":"Product /
 
 curl -u $TOKEN:x-oauth-basic --include --request POST --data '{"name":"Good for juniors","color":"006b75"}' "https://api.github.com/repos/$REPO_USER/$REPO_NAME/labels"
 curl -u $TOKEN:x-oauth-basic --include --request POST --data '{"name":"Client Discussion required","color":"fef2c0"}' "https://api.github.com/repos/$REPO_USER/$REPO_NAME/labels"
-curl -u $TOKEN:x-oauth-basic --include --request POST --data '{"name":"Developer Discussion required","color":"fef2c0"}' "https://api.github.com/repos/$REPO_USER/$REPO_NAME/labels"
+curl -u $TOKEN:x-oauth-basic --include --request POST --data '{"name":"Dev Discussion required","color":"fef2c0"}' "https://api.github.com/repos/$REPO_USER/$REPO_NAME/labels"
 
 # Priorities & Roadmap
 curl -u $TOKEN:x-oauth-basic --include --request POST --data '{"name":"Bug / Blocker","color":"EE344D"}' "https://api.github.com/repos/$REPO_USER/$REPO_NAME/labels"
